@@ -1,10 +1,10 @@
 # Claude Code Best Practices
 
 > Consolidated and deduplicated from four sources:
-> - [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) (community list)
-> - [50 Claude Code Tips](https://getpushtoprod.substack.com/p/50-claude-code-tips-to-get-you-started) (getpushtoprod)
-> - [32 Claude Code Tips](https://agenticcoding.substack.com/p/32-claude-code-tips-from-basics-to) (agenticcoding)
-> - [Official Anthropic Best Practices](https://code.claude.com/docs/en/best-practices)
+> - **[Anthropic]** [Official Best Practices](https://code.claude.com/docs/en/best-practices)
+> - **[50tips]** [50 Claude Code Tips](https://getpushtoprod.substack.com/p/50-claude-code-tips-to-get-you-started) (getpushtoprod)
+> - **[32tips]** [32 Claude Code Tips](https://agenticcoding.substack.com/p/32-claude-code-tips-from-basics-to) (agenticcoding)
+> - **[community]** [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) (shanraisshan)
 
 ---
 
@@ -12,17 +12,17 @@
 
 Context is the primary constraint in Claude Code — performance degrades as the window fills.
 
-- **`/clear` between unrelated tasks.** Mixing topics pollutes context. The "kitchen sink session" (one task, then tangent, then back) is the most common failure pattern.
-- **Fresh, condensed context beats large context.** Start new conversations for different topics. A clean session with a better prompt almost always outperforms a long session with accumulated corrections.
-- **Use `/compact` proactively.** Don't wait for auto-compaction. Run `/compact Focus on the API changes` with explicit instructions on what to preserve. Compact manually at ~50% context capacity.
-- **Customize compaction in CLAUDE.md.** Add instructions like: `"When compacting, always preserve the full list of modified files and any test commands."` This ensures critical context survives.
-- **Use subagents for investigation.** When exploring a codebase, Claude reads many files — all consuming context. Delegate with `"Use subagents to investigate X"`. They report summaries back without bloating your main session.
-- **Lazy-load context.** Load file details only when needed. Avoid front-loading the whole codebase into a conversation.
-- **Scope investigations narrowly.** Asking Claude to "investigate" without boundaries can fill the window with hundreds of irrelevant file reads. Give a target, not an open-ended mandate.
-- **Use `/btw` for side questions.** The answer appears in a dismissible overlay and never enters conversation history — ideal for quick lookups that shouldn't grow context.
-- **After two failed corrections, reset.** If you've corrected Claude twice on the same issue, context is polluted with failed approaches. Run `/clear` and start fresh with a better prompt.
-- **Monitor token usage.** Use `/context` to audit usage. Configure a custom status line to track context fill in real time.
-- **`/resume` and `--continue` for multi-session tasks.** Context is saved locally. Use `claude --continue` (most recent) or `claude --resume` (pick from list) to pick up across sessions without re-explaining.
+- **`/clear` between unrelated tasks.** Mixing topics pollutes context. The "kitchen sink session" (one task, then tangent, then back) is the most common failure pattern. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Fresh, condensed context beats large context.** Start new conversations for different topics. A clean session with a better prompt almost always outperforms a long session with accumulated corrections. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Use `/compact` proactively.** Don't wait for auto-compaction. Run `/compact Focus on the API changes` with explicit instructions on what to preserve. Compact manually at ~50% context capacity. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Customize compaction in CLAUDE.md.** Add instructions like: `"When compacting, always preserve the full list of modified files and any test commands."` This ensures critical context survives. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Use subagents for investigation.** When exploring a codebase, Claude reads many files — all consuming context. Delegate with `"Use subagents to investigate X"`. They report summaries back without bloating your main session. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Lazy-load context.** Load file details only when needed. Avoid front-loading the whole codebase into a conversation. *([32tips](https://agenticcoding.substack.com/p/32-claude-code-tips-from-basics-to))*
+- **Scope investigations narrowly.** Asking Claude to "investigate" without boundaries can fill the window with hundreds of irrelevant file reads. Give a target, not an open-ended mandate. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Use `/btw` for side questions.** The answer appears in a dismissible overlay and never enters conversation history — ideal for quick lookups that shouldn't grow context. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **After two failed corrections, reset.** If you've corrected Claude twice on the same issue, context is polluted with failed approaches. Run `/clear` and start fresh with a better prompt. *([50tips](https://getpushtoprod.substack.com/p/50-claude-code-tips-to-get-you-started))*
+- **Monitor token usage.** Use `/context` to audit usage. Configure a custom status line to track context fill in real time. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **`/resume` and `--continue` for multi-session tasks.** Context is saved locally. Use `claude --continue` (most recent) or `claude --resume` (pick from list) to pick up across sessions without re-explaining. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 
 ---
 
@@ -31,7 +31,7 @@ Context is the primary constraint in Claude Code — performance degrades as the
 The quality of Claude's output is directly determined by the precision of your prompts and the verification criteria you provide.
 
 ### Give Claude a way to verify its work
-This is the single highest-leverage practice. Claude performs dramatically better when it can self-check.
+This is the single highest-leverage practice. Claude performs dramatically better when it can self-check. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 
 - Provide tests, expected outputs, or screenshots as success criteria.
 - For UI changes: `"Take a screenshot of the result and compare it to the original. List differences and fix them."`
@@ -39,7 +39,7 @@ This is the single highest-leverage practice. Claude performs dramatically bette
 - For build failures: paste the error and say `"Fix it and verify the build succeeds. Address the root cause, don't suppress the error."`
 
 ### Explore → Plan → Implement → Commit
-Don't let Claude jump straight to coding. Separate phases produce better results:
+Don't let Claude jump straight to coding. Separate phases produce better results. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 
 1. **Explore** (Plan Mode): Claude reads files, answers questions, makes no changes.
 2. **Plan** (Plan Mode): `"What files need to change? Create a plan."` Press `Ctrl+G` to edit the plan before Claude proceeds.
@@ -48,20 +48,23 @@ Don't let Claude jump straight to coding. Separate phases produce better results
 
 > Skip planning for small, clear tasks (typo fixes, single-line changes). Planning adds overhead — only use it when scope is uncertain or changes span multiple files.
 
-### Be specific
+### State goals, not mechanisms *([50tips](https://getpushtoprod.substack.com/p/50-claude-code-tips-to-get-you-started))*
+Give constraints and goals rather than prescriptive steps. Describing what you want to achieve (not how to achieve it) lets Claude pick the best path — especially when the mechanism you have in mind isn't the most direct route.
+
+### Be specific *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 - **Scope the task:** Not `"add tests for foo.py"` but `"write a test for foo.py covering the edge case where the user is logged out. Avoid mocks."`
 - **Point to sources:** `"Look through ExecutionFactory's git history and summarize how its API came to be."`
 - **Reference existing patterns:** `"Look at HotDogWidget.php to understand the patterns, then follow them to implement a calendar widget."`
 - **Describe symptoms precisely:** Include file location, what "fixed" looks like, and how to verify.
 
-### Provide rich content
+### Provide rich content *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 - Use `@filename` to reference files directly — Claude reads them before responding.
 - Paste screenshots and images inline.
 - Pipe data: `cat error.log | claude`
 - Give URLs for documentation. Use `/permissions` to allowlist frequently-used domains.
 - Tell Claude to fetch context itself using Bash commands or MCP tools.
 
-### Let Claude interview you
+### Let Claude interview you *([50tips](https://getpushtoprod.substack.com/p/50-claude-code-tips-to-get-you-started))*
 For complex features, start with a minimal description and ask Claude to interview you first:
 
 ```
@@ -73,11 +76,10 @@ Keep interviewing until we've covered everything, then write a complete spec to 
 Then start a fresh session to execute. Clean context, written spec to reference.
 
 ### Other prompting tips
-- **Recovery strategy:** `"Knowing everything now, scrap the current approach and implement an elegant solution."` Useful after a messy debugging session.
-- **Challenge Claude:** Ask it to grill you on your proposed changes before merging. Ask for proof.
-- **Goals over steps:** Give constraints and goals rather than prescriptive steps. Don't micromanage the implementation approach.
-- **Vague prompts have their place.** `"What would you improve in this file?"` can surface unexpected insights during exploration.
-- **Ask codebase questions freely.** Treat Claude like a senior engineer: `"How does logging work?"`, `"Why does this call foo() instead of bar()?"`, `"What edge cases does CustomerOnboardingFlowImpl handle?"`
+- **Recovery strategy:** `"Knowing everything now, scrap the current approach and implement an elegant solution."` Useful after a messy debugging session. *([32tips](https://agenticcoding.substack.com/p/32-claude-code-tips-from-basics-to))*
+- **Challenge Claude:** Ask it to grill you on your proposed changes before merging. Ask for proof. *([community](https://github.com/shanraisshan/claude-code-best-practice))*
+- **Vague prompts have their place.** `"What would you improve in this file?"` can surface unexpected insights during exploration. *([32tips](https://agenticcoding.substack.com/p/32-claude-code-tips-from-basics-to))*
+- **Ask codebase questions freely.** Treat Claude like a senior engineer: `"How does logging work?"`, `"Why does this call foo() instead of bar()?"` *([community](https://github.com/shanraisshan/claude-code-best-practice))*
 
 ---
 
@@ -85,19 +87,19 @@ Then start a fresh session to execute. Clean context, written spec to reference.
 
 CLAUDE.md is loaded at the start of every session. It provides persistent context Claude can't infer from code alone.
 
-### Getting started
+### Getting started *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 - Run `/init` to auto-generate a CLAUDE.md from your current project structure.
 - Commit CLAUDE.md to git so the whole team benefits. It compounds in value over time.
 - Use `CLAUDE.local.md` (add to `.gitignore`) for personal project-specific notes.
 
-### Size and structure
+### Size and structure *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 - **Keep it short.** Target under 200 lines. One source recommends ~60 lines as optimal. Bloated files cause Claude to ignore critical rules.
 - **For each line, ask:** *"Would removing this cause Claude to make mistakes?"* If not, cut it.
 - **If Claude ignores a rule:** the file is too long and the rule is getting lost. Prune.
 - **If Claude asks questions answered in CLAUDE.md:** the phrasing is ambiguous. Rewrite.
 - Add emphasis (`IMPORTANT`, `YOU MUST`) to improve adherence on critical rules.
 
-### What to include vs. exclude
+### What to include vs. exclude *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 
 | Include | Exclude |
 |---------|---------|
@@ -109,7 +111,7 @@ CLAUDE.md is loaded at the start of every session. It provides persistent contex
 | Developer environment quirks (required env vars) | File-by-file codebase descriptions |
 | Common gotchas and non-obvious behaviors | Self-evident practices like "write clean code" |
 
-### Hierarchy and imports
+### Hierarchy and imports *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 CLAUDE.md files can be placed at multiple levels — all relevant ones are loaded:
 
 - `~/.claude/CLAUDE.md` — applies to all projects globally
@@ -126,7 +128,7 @@ See @README.md for project overview and @package.json for available npm commands
 @docs/git-instructions.md
 ```
 
-### Useful sections to include
+### Useful sections to include *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 - **Critical Rules** at the top (highest-priority instructions)
 - **Workflow triggers** mapping phrases like `"build the app"` to specific scripts
 - **Verification commands**: build, test, lint procedures so Claude can self-check
@@ -138,44 +140,42 @@ See @README.md for project overview and @package.json for available npm commands
 ## 4. Workflow
 
 ### Daily development loop
-- **Start features in Plan Mode.** Discuss approach before touching code.
-- **Commit early and often.** Commit at least hourly when tasks complete. Git is your safety net.
-- **Small, focused PRs.** One feature per PR. Easier to review and revert. (~118 lines at p50 is a good target.)
-- **Squash merge for clean linear history.**
-- **Use `/rewind` (Esc+Esc) liberally.** Every Claude action creates a checkpoint. You can restore conversation, code, or both. This is not a replacement for git, but use it for fast iteration — try risky things, rewind if they fail.
+- **Start features in Plan Mode.** Discuss approach before touching code. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Commit early and often.** Commit at least hourly when tasks complete. Git is your safety net. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Small, focused PRs.** One feature per PR. Easier to review and revert. (~118 lines at p50 is a good target.) *([community](https://github.com/shanraisshan/claude-code-best-practice))*
+- **Squash merge for clean linear history.** *([community](https://github.com/shanraisshan/claude-code-best-practice))*
+- **Use `/rewind` (Esc+Esc) liberally.** Every Claude action creates a checkpoint. You can restore conversation, code, or both. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 
-### Session management
+### Session management *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 - **Name your sessions:** Use `/rename` to give sessions descriptive labels like `"oauth-migration"` so you can find them later.
 - **Resume with context:** `claude --continue` or `claude --resume` — don't re-explain what you've already covered.
 - **Use `/fork`** (or clone scripts) to branch conversations at a specific point without losing the original thread.
 
 ### Parallel workflows
-- **Run multiple Claude instances** across terminals or tmux panes for concurrent tasks.
-- **Git worktrees for file isolation.** Use when running parallel instances that touch different parts of the codebase simultaneously.
-- **Writer/Reviewer pattern.** Session A implements; Session B reviews from a fresh context (no bias toward code it just wrote). Feed review output back to Session A.
-- **Fan out for large migrations.** Have Claude list all files, then loop through them calling `claude -p` in a script with `--allowedTools` to restrict permissions.
+- **Run multiple Claude instances** across terminals or tmux panes for concurrent tasks. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Git worktrees for file isolation.** Use when running parallel instances that touch different parts of the codebase simultaneously. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Writer/Reviewer pattern.** Session A implements; Session B reviews from a fresh context (no bias toward code it just wrote). Feed review output back to Session A. *([50tips](https://getpushtoprod.substack.com/p/50-claude-code-tips-to-get-you-started))*
+- **Fan out for large migrations.** Have Claude list all files, then loop through them calling `claude -p` in a script with `--allowedTools` to restrict permissions. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 
-### Automation and CI
+### Automation and CI *([Anthropic](https://code.claude.com/docs/en/best-practices))*
 - **Non-interactive mode:** `claude -p "prompt"` for CI pipelines, pre-commit hooks, scripts.
 - **Structured output:** `--output-format json` or `--output-format stream-json` for programmatic parsing.
 - **Auto mode:** `--permission-mode auto` for unattended runs — a classifier handles approvals in the background.
 - **Hooks for deterministic automation:** Unlike CLAUDE.md instructions (advisory), hooks guarantee execution. Use `PreToolUse` to block dangerous commands, `PostToolUse` for auto-formatting. Ask Claude to write hooks for you.
 
-### Extending Claude
-- **Skills** (`.claude/skills/<name>/SKILL.md`): reusable workflows invoked with `/skill-name`. Use `disable-model-invocation: true` for workflows with side effects you want to trigger manually.
-- **Subagents** (`.claude/agents/<name>.md`): specialized assistants with their own context, tool allowlists, and models. Feature-specific subagents outperform general role personas.
+### Extending Claude *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Skills** (`.claude/skills/<name>/SKILL.md`): reusable workflows invoked with `/skill-name`.
+- **Subagents** (`.claude/agents/<name>.md`): specialized assistants with their own context, tool allowlists, and models.
 - **MCP servers:** Connect external tools — Notion, Figma, databases, GitHub — via `claude mcp add`.
 - **Plugins:** Browse with `/plugin`. Bundles of skills, hooks, subagents, and MCP configs.
-- **CLI tools:** Install `gh`, `aws`, `gcloud` etc. Claude uses them natively. Without `gh`, GitHub API calls hit rate limits.
+- **CLI tools:** Install `gh`, `aws`, `gcloud` etc. Claude uses them natively.
 
 ### Verification and debugging
-- Invest in verification: tests, linters, scripts, screenshots — the more automated, the better.
-- Use the Claude in Chrome extension for UI validation.
-- For stuck issues, screenshot and share directly with Claude.
-- Use MCPs for visibility: Playwright, Chrome DevTools.
-- Use `/doctor` for installation and configuration diagnostics.
-- Use ASCII diagrams for architecture discussions.
-- Cross-model QA: have one model review another's implementation.
+- Invest in verification: tests, linters, scripts, screenshots — the more automated, the better. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- Use the Claude in Chrome extension for UI validation. *([50tips](https://getpushtoprod.substack.com/p/50-claude-code-tips-to-get-you-started))*
+- For stuck issues, screenshot and share directly with Claude. *([32tips](https://agenticcoding.substack.com/p/32-claude-code-tips-from-basics-to))*
+- Use MCPs for visibility: Playwright, Chrome DevTools. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- Cross-model QA: have one model review another's implementation. *([community](https://github.com/shanraisshan/claude-code-best-practice))*
 
 ### Common failure patterns to avoid
 | Pattern | Fix |
@@ -190,10 +190,10 @@ See @README.md for project overview and @package.json for available npm commands
 
 ## 5. Model Selection
 
-- **Opus for planning and complex reasoning.** Use for intricate architectural decisions, reviewing plans, and anything requiring deep multi-step reasoning. Use `"ultrathink"` keyword to trigger high-effort reasoning.
-- **Sonnet for coding.** Faster and more cost-efficient for implementation tasks.
-- **Haiku for simple/fast tasks.** Lightweight queries, quick lookups.
-- **Switch models with `/model`.** Use the right model for each phase — plan with Opus, implement with Sonnet.
-- **Enable thinking mode for decisions.** Useful when you want reasoning exposed before a conclusion.
-- **Subagent model overrides.** Define per-agent models in `.claude/agents/<name>.md` — e.g., pin a security-reviewer subagent to `model: opus` regardless of your session model.
-- **On compaction errors with large contexts:** switch to a 1M token model before running `/compact`.
+- **Opus for planning and complex reasoning.** Use for intricate architectural decisions, reviewing plans, and anything requiring deep multi-step reasoning. Use `"ultrathink"` keyword to trigger high-effort reasoning. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Sonnet for coding.** Faster and more cost-efficient for implementation tasks. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Haiku for simple/fast tasks.** Lightweight queries, quick lookups. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Switch models with `/model`.** Use the right model for each phase — plan with Opus, implement with Sonnet. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Enable thinking mode for decisions.** Useful when you want reasoning exposed before a conclusion. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **Subagent model overrides.** Define per-agent models in `.claude/agents/<name>.md` — e.g., pin a security-reviewer subagent to `model: opus`. *([Anthropic](https://code.claude.com/docs/en/best-practices))*
+- **On compaction errors with large contexts:** switch to a 1M token model before running `/compact`. *([Anthropic](https://code.claude.com/docs/en/best-practices))*

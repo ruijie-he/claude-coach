@@ -54,12 +54,13 @@ Track whether I'm actually incorporating past suggestions over time.
 ```
 [Rewritten version of the actual prompt]
 ```
+
 **Original:**
 ```
 [The original prompt]
 ```
 
-[One sentence: why it matters.]
+[One sentence: why it matters.] → *"[Tip name]"* · [Source](url)
 
 ---
 
