@@ -3,24 +3,24 @@
 Analyze my recent Claude Code prompts and give me one concrete suggestion to improve.
 Track whether I'm actually incorporating past suggestions over time.
 
+> If cloned somewhere other than `~/claude-coach`, set `CLAUDE_COACH_DIR` in your shell profile.
+
 ## Steps
 
 1. Extract recent prompts:
    ```bash
-   COACH_DIR="${CLAUDE_COACH_DIR:-$HOME/claude-coach}"
-   python3 "$COACH_DIR/extract_prompts.py" 24
+   python3 ~/claude-coach/extract_prompts.py 24
    ```
 
 2. Read the extracted prompts:
-   Read `$COACH_DIR/recent_prompts.json`
+   Read `~/claude-coach/recent_prompts.json`
 
 3. Read the curated tips:
-   Read `$COACH_DIR/tips.md`
+   Read `~/claude-coach/tips.md`
 
-4. Load past reviews to check for recurring patterns. Run:
+4. Load past reviews to check for recurring patterns:
    ```bash
-   COACH_DIR="${CLAUDE_COACH_DIR:-$HOME/claude-coach}"
-   ls "$COACH_DIR/reviews/" 2>/dev/null | sort | tail -7
+   ls ~/claude-coach/reviews/ 2>/dev/null | sort | tail -7
    ```
    Files are named YYYY-MM-DD_HH-MM.md. Read each returned (up to 7). If none exist,
    skip this step.
@@ -74,7 +74,7 @@ Track whether I'm actually incorporating past suggestions over time.
 
 7. Save today's review. Write the full report to:
    ```
-   $COACH_DIR/reviews/YYYY-MM-DD_HH-MM.md
+   ~/claude-coach/reviews/YYYY-MM-DD_HH-MM.md
    ```
    Use today's actual date and current time (24h, e.g. 2026-04-09_14-32.md).
    Confirm the save path to the user in one line.
