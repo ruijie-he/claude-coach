@@ -20,7 +20,7 @@ Track whether I'm actually incorporating past suggestions over time.
    ```bash
    ls ~/claude-coach/reviews/ 2>/dev/null | sort | tail -7
    ```
-   Then read each of the past review files returned (up to 7). If no past reviews exist,
+   Files are named YYYY-MM-DD_HH-MM.md. Read each returned (up to 7). If none exist,
    skip this step.
 
 5. Analyze my prompts against the tips and past reviews. Pick the single most impactful
@@ -68,7 +68,7 @@ Track whether I'm actually incorporating past suggestions over time.
 
 7. Save today's review. Write the full report to:
    ```
-   ~/claude-coach/reviews/YYYY-MM-DD.md
+   ~/claude-coach/reviews/YYYY-MM-DD_HH-MM.md
    ```
-   Use today's actual date. Overwrite if a file for today already exists.
+   Use today's actual date and current time (24h, e.g. 2026-04-09_14-32.md).
    Confirm the save path to the user in one line.
