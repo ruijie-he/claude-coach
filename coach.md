@@ -25,8 +25,8 @@ Track whether I'm actually incorporating past suggestions over time.
 
 5. Analyze my prompts against the tips and past reviews. Pick the single most impactful
    suggestion. Check if the same pattern appeared in any past review — if yes, mark it
-   RECURRING with the earliest date; if no, mark it NEW. Also identify any patterns flagged
-   before but absent today (genuine improvement).
+   RECURRING with the earliest date; if no, mark it NEW. For Progress: only flag a past
+   suggestion if today's prompts show it was actively and meaningfully applied.
 
 6. Produce a coaching report in this exact format — keep it tight, no padding:
 
@@ -38,11 +38,13 @@ Track whether I'm actually incorporating past suggestions over time.
 
 ---
 
-### ✅ [One specific thing you did well today — one sentence, quote the prompt]
+### ✅ Good: [Short title]
+
+[One sentence: what you did well, with a direct quote.]
 
 ---
 
-### 💡 [Short title] `[NEW]` or `[RECURRING since YYYY-MM-DD]`
+### 💡 Improve: [Short title] `[NEW]` or `[RECURRING since YYYY-MM-DD]`
 
 [One sentence: what pattern you observed, with a direct quote.]
 
@@ -61,8 +63,9 @@ Track whether I'm actually incorporating past suggestions over time.
 
 ### 📈 Progress
 
-[Only include if a past suggestion is absent today: "✓ [Pattern] — flagged YYYY-MM-DD, not seen today."
- Omit this section entirely if nothing to report.]
+[Only include if a past suggestion was actively present today AND the prompt shows meaningful
+ incorporation of that feedback: "✓ [Pattern] — flagged YYYY-MM-DD, applied today in: [short quote]."
+ Omit this section entirely if no past suggestions were genuinely acted on.]
 
 ---
 
