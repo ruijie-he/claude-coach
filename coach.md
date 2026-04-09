@@ -60,7 +60,7 @@ Track whether I'm actually incorporating past suggestions over time.
 [The original prompt]
 ```
 
-[One sentence: why it matters.] → *"[Tip name]"* · [Source](url)
+[One sentence: why it matters.] → *"[Exact tip name from tips.md § Section]"* · [Source](url from that tip's inline label)
 
 ---
 
