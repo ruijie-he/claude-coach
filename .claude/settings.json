@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(cd ~/claude-coach:*)",
-      "Bash(cp ~/claude-coach/:*)",
-      "Bash(cp ~/.claude/:*)"
-    ]
-  }
-}
