@@ -10,9 +10,9 @@ Run `/coach` in any Claude Code session. It will:
 2. Compare them against a curated set of best practices
 3. Load your past review files to detect **recurring** vs **new** patterns
 4. Produce a report with concrete rewrites of your actual prompts
-5. Save the report to `~/claude-coach/reviews/YYYY-MM-DD.md`
+5. Save the report to `reviews/YYYY-MM-DD_HH-MM.md`
 
-Each suggestion is tagged `[NEW]` or `[RECURRING since YYYY-MM-DD]`. If the same pattern keeps appearing, you know the habit hasn't stuck yet. Improvements (patterns flagged before but absent today) are called out in a **Progress** section.
+Each suggestion is tagged `[NEW]` or `[RECURRING since YYYY-MM-DD]`. If the same pattern keeps appearing, you know the habit hasn't stuck yet. Improvements (patterns applied today that were previously flagged) are called out in a **Progress** section.
 
 ## Setup
 
@@ -22,16 +22,18 @@ Each suggestion is tagged `[NEW]` or `[RECURRING since YYYY-MM-DD]`. If the same
 git clone https://github.com/ruijie-he/claude-coach.git ~/claude-coach
 ```
 
+> Cloning to a different path? Set `CLAUDE_COACH_DIR` in your shell profile to point to it.
+
 ### 2. Install the slash command
 
 ```bash
-cp ~/claude-coach/coach.md ~/.claude/commands/coach.md
+cp coach.md ~/.claude/commands/coach.md
 ```
 
 ### 3. Create your reviews folder
 
 ```bash
-mkdir -p ~/claude-coach/reviews
+mkdir -p reviews
 ```
 
 This folder is gitignored — reviews are personal and stay on your machine.
