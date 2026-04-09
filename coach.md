@@ -13,10 +13,13 @@ Track whether I'm actually incorporating past suggestions over time.
    ```
 
 2. Read the extracted prompts:
-   Read `~/claude-coach/recent_prompts.json`
+   ```bash
+   python3 ~/claude-coach/format_prompts.py
+   ```
+   Do NOT use the Read tool on `recent_prompts.json` — it is too large and will fail.
 
 3. Read the curated tips:
-   Read `~/claude-coach/tips.md`
+   Use the Read tool on `~/claude-coach/tips.md` (small file, always use Read tool directly).
 
 4. Load past reviews to check for recurring patterns:
    ```bash
