@@ -28,10 +28,16 @@ Track whether I'm actually incorporating past suggestions over time.
    Files are named YYYY-MM-DD_HH-MM.md. Read each returned (up to 7). If none exist,
    skip this step.
 
-5. Analyze my prompts against the tips and past reviews. Pick the single most impactful
-   suggestion. Check if the same pattern appeared in any past review — if yes, mark it
-   RECURRING with the earliest date; if no, mark it NEW. For Progress: only flag a past
-   suggestion if today's prompts show it was actively and meaningfully applied.
+5. Analyze my prompts against the tips and past reviews. Identify all meaningful patterns,
+   then select one as today's suggestion using this priority order:
+   a. **Prefer NEW patterns** — ones not suggested in any of the past reviews you read.
+   b. **Only re-suggest a past pattern if it is egregious** — appearing prominently across
+      many of today's prompts AND still clearly unaddressed (not just a one-off occurrence).
+   c. If re-suggesting, it must not have been the Improve suggestion in the most recent review.
+
+   Check if the chosen pattern appeared in any past review — if yes, mark it RECURRING with
+   the earliest date; if no, mark it NEW. For Progress: only flag a past suggestion if
+   today's prompts show it was actively and meaningfully applied.
 
 6. Produce a coaching report in this exact format — keep it tight, no padding:
 
