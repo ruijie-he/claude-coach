@@ -28,6 +28,7 @@ git clone https://github.com/ruijie-he/claude-coach.git ~/claude-coach
 
 ```bash
 cp coach.md ~/.claude/commands/coach.md
+cp token-coach.md ~/.claude/commands/token-coach.md
 ```
 
 ### 3. Create your reviews folder
@@ -53,6 +54,7 @@ Open Claude Code in any project and type:
 | `coach.md` | The `/coach` slash command — install to `~/.claude/commands/` |
 | `extract_prompts.py` | Reads `~/.claude/projects/**/*.jsonl` and extracts your prompts |
 | `tips.md` | Curated best practices (context management, prompting, CLAUDE.md, workflow, model selection) |
+| `token-coach.md` | Optional `/token-coach` slash command for per-session token usage coaching and efficiency reports |
 | `reviews/` | Your daily reports — gitignored, personal to each user |
 
 ## Requirements
